@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casamento Natália & Rafael</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6fe3af;
+            --dark-text: #333333;
+            --light-text: #ffffff;
+            --background-light: #f9f9f9;
+            --heading-font: 'Playfair Display', serif;
+            --body-font: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--body-font);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header --- */
+        .hero {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* Ensure background stays within hero */
+        }
+
+        /* --- Hero Background Carousel --- */
+        .hero-bg-carousel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3; /* Adjust opacity for desired effect */
+            z-index: 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 800%; /* 4 images duplicated = 8. 8 * 100% = 800% */
+            height: 100%;
+            animation: scroll-bg 80s linear infinite; /* Aumente o tempo para deixar mais lento */
+        }
+
+        .carousel-img {
+            width: 12.5%; /* 100% / 8 images = 12.5% */
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        @keyframes scroll-bg {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%); /* Move by half the total track width */
+            }
+        }
+
+        .hero h1 {
+            font-family: var(--heading-font);
+            font-size: 5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .hero .container {
+            position: relative; /* Ensure content is above the background */
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+        
+        .hero .last-names {
+            font-family: var(--body-font);
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-top: -10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-brand {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        /* --- Navigation --- */
+        nav {
+            background: var(--background-light);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between; /* Changed for brand and links */
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* --- Hamburger Menu --- */
+        .nav-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .hamburger {
+            display: block;
+            position: relative;
+            width: 25px;
+            height: 3px;
+            background: var(--dark-text);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 3px;
+            background: var(--dark-text);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hamburger::before {
+            transform: translateY(-8px);
+        }
+
+        .hamburger::after {
+            transform: translateY(8px);
+        }
+
+        .nav-toggle.open .hamburger {
+            transform: rotate(45deg);
+        }
+        .nav-toggle.open .hamburger::before {
+            transform: rotate(90deg);
+            opacity: 0;
+        }
+        .nav-toggle.open .hamburger::after {
+            transform: rotate(-90deg) translate(8px, -8px);
+        }
+
+        nav a {
+            color: var(--dark-text);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            font-weight: 400;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        nav a:hover, nav a:focus {
+            color: var(--light-text);
+            background-color: var(--primary-color);
+        }
+
+        /* --- Sections --- */
+        section {
+            padding: 60px 0;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--background-light);
+        }
+
+        h2 {
+            font-family: var(--heading-font);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+
+        p {
+            text-align: justify;
+            margin-bottom: 1rem;
+        }
+
+        /* --- Programação --- */
+        .timeline {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        .timeline-item {
+            width: 30%;
+        }
+        .timeline-item h3 {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            color: var(--dark-text);
+        }
+        .timeline-item p {
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        /* --- Localização --- */
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            margin-top: 20px;
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- Botão --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #58c998;
+        }
+
+        .center-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--dark-text);
+            color: var(--light-text);
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        /* --- Responsividade --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .nav-brand {
+                font-size: 1.2rem;
+            }
+
+            .nav-toggle {
+                display: block; /* Show hamburger on mobile */
+            }
+
+            .nav-links {
+                display: none; /* Hide links by default on mobile */
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+            }
+
+            .nav-links.nav-open {
+                display: flex; /* Show links when menu is open */
+            }
+
+            .timeline {
+                flex-direction: column;
+                align-items: center;
+            }
+            .timeline-item {
+                width: 80%;
+                margin-bottom: 30px;
+            }
+
+            .hero .last-names {
+                font-size: 1rem;
+                margin-top: -5px;
+            }
+
+            /* Adjust nav container for hamburger */
+            nav .container {
+                flex-direction: row; /* Align brand and hamburger horizontally */
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header class="hero" id="home">
+        <div class="hero-bg-carousel">
+            <div class="carousel-track">
+                <div class="carousel-img" style="background-image: url('images/SUA_FOTO_1.jpeg');"></div>
+                <div class="carousel-img" style="background-image: url('images/SUA_FOTO_2.jpeg');"></div>
+                <div class="carousel-img" style="background-image: url('images/SUA_FOTO_3.jpeg');"></div>
+                <div class="carousel-img" style="background-image: url('images/SUA_FOTO_4.jpeg');"></div>
+                <!-- Imagens duplicadas para o loop contínuo -->
+                <div class="carousel-img" style="background-image: url('images/SUA_FOTO_1.jpeg');"></div>
+                <div class="carousel-img" style="background-image: url('images/SUA_FOTO_2.jpeg');"></div>
+                <div class="carousel-img" style="background-image: url('images/SUA_FOTO_3.jpeg');"></div>
+                <div class="carousel-img" style="background-image: url('images/SUA_FOTO_4.jpeg');"></div>
+            </div>
+        </div>
+        <div class="container">
+            <p>VAMOS NOS CASAR</p>
+            <h1>Natália & Rafael</h1>
+            <p class="last-names">Santos & Campos</p>
+            <p>23 de Agosto de 2024 &bull; Foz do Iguaçu, PR</p>
+        </div>
+        <div class="scroll-down">Role para baixo</div>
+    </header>
+
+    <!-- Navegação -->
+    <nav>
+        <div class="container nav-container">
+            <div class="nav-brand">Natália &amp; Rafael</div>
+            <button class="nav-toggle" aria-label="Abrir menu">
+                <span class="hamburger"></span>
+            </button>
+            <div class="nav-links">
+                <a href="#historia">Nossa História</a>
+                <a href="#programacao">Programação</a>
+                <a href="#presentes">Lista de Presentes</a>
+                <a href="#rsvp">Confirme sua Presença</a>
+                <a href="#localizacao">Localização</a>
+                <a href="#acomodacoes">Acomodações</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Nossa História -->
+        <section id="historia">
+            <div class="container">
+                <h2>Nossa História</h2>
+                <p>
+                    Dizem que as melhores histórias de amor começam de forma inesperada, e a nossa não foi diferente. Nossos caminhos se cruzaram quando menos esperávamos, e o que era uma simples coincidência do destino floresceu para algo muito maior. Entre conversas que varavam a noite, risadas compartilhadas que se tornaram nossa trilha sonora e o conforto de encontrar um no outro um porto seguro, nosso amor foi se construindo, tijolo por tijolo, com base na cumplicidade, no respeito e em um carinho que só se aprofundava.
+                </p>
+                <p>
+                    Cada passo dessa jornada nos trouxe até aqui, ao momento mais aguardado de nossas vidas. O pedido de casamento não foi apenas uma pergunta, mas a confirmação de que nossos sonhos, planos e corações já pertenciam um ao outro. Agora, estamos prestes a iniciar o capítulo mais belo da nossa história, e não faria sentido vivê-lo sem a presença das pessoas que mais amamos. Mal podemos esperar para celebrar essa união com vocês, que são as testemunhas do nosso amor.
+                </p>
+            </div>
+        </section>
+
+        <!-- Programação -->
+        <section id="programacao">
+            <div class="container">
+                <h2>Programação</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>16:00</h3>
+                        <p>Cerimônia</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>17:30</h3>
+                        <p>Coquetel</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>19:00</h3>
+                        <p>Jantar & Festa</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lista de Presentes -->
+        <section id="presentes">
+            <div class="container">
+                <h2>Lista de Presentes</h2>
+                <p>
+                    Sua presença é o nosso maior presente! Mas, se você também quiser nos presentear, ficaremos muito gratos. Preparamos algumas opções para facilitar.
+                </p>
+                <p>
+                    <strong>[SUA INFORMAÇÃO AQUI]</strong>
+                    Você pode colocar aqui o link para sua lista de presentes em um site (como Havan, Magazine Luiza, etc.) ou informar uma chave Pix para cotas de lua de mel, por exemplo.
+                </p>
+                <p>Exemplo com Chave Pix:</p>
+                <p style="text-align: center; font-weight: bold; font-size: 1.2rem;">
+                    Chave Pix (Celular): (XX) XXXXX-XXXX
+                </p>
+                <div class="center-btn">
+                    <a href="[LINK DA SUA LISTA DE PRESENTES AQUI]" target="_blank" class="btn">Acessar Lista de Presentes Online</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Confirmação de Presença -->
+        <section id="rsvp">
+            <div class="container">
+                <h2>Confirme sua Presença</h2>
+                <p>
+                    Por favor, confirme sua presença até o dia <strong>[DATA LIMITE AQUI, ex: 01/08/2024]</strong> para que possamos organizar tudo com carinho.
+                </p>
+                <p>
+                    Você pode confirmar de forma rápida e fácil através do WhatsApp.
+                </p>
+                <div class="center-btn">
+                    <!-- Altere o número de telefone para o seu. Não use espaços ou traços. -->
+                    <a href="https://wa.me/55SEUNUMEROAQUI?text=Olá!%20Confirmo%20minha%20presença%20no%20casamento%20de%20Natália%20e%20Rafael." target="_blank" class="btn">Confirmar por WhatsApp</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Localização -->
+        <section id="localizacao">
+            <div class="container">
+                <h2>Localização</h2>
+                <p style="text-align: center;">
+                    A cerimônia e a recepção serão realizadas no mesmo local, para o conforto de todos.<br>
+                    <strong>Quinta das Marias</strong><br>
+                    Av. das Cataratas, 4790 - Vila Yolanda, Foz do Iguaçu - PR
+                </p>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3600.569947913381!2d-54.5577646855136!3d-25.51939198374768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94596411511a757b%3A0x19932a3f34e23b4!2sQuinta%20das%20Marias%20Eventos!5e0!3m2!1spt-BR!2sbr!4v1678886543210!5m2!1spt-BR!2sbr" 
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Acomodações -->
+        <section id="acomodacoes">
+            <div class="container">
+                <h2>Acomodações</h2>
+                <p>
+                    Para sua comodidade, especialmente para os convidados que vêm de fora, selecionamos algumas sugestões de hotéis em Foz do Iguaçu.
+                </p>
+                <ul>
+                    <li><strong>[NOME DO HOTEL 1]</strong> - Próximo ao local, ideal para quem busca praticidade.</li>
+                    <li><strong>[NOME DO HOTEL 2]</strong> - Opção com bom custo-benefício.</li>
+                    <li><strong>[NOME DO HOTEL 3]</strong> - Para uma experiência mais luxuosa.</li>
+                </ul>
+                <p>Recomendamos fazer a reserva com antecedência!</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>Natália & Rafael &bull; Feito com muito amor</p>
+    </footer>
+
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinkItems = document.querySelectorAll('.nav-links a');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-open');
+            navToggle.classList.toggle('open');
+        });
+
+        // Fecha o menu ao clicar em um link (para navegação na mesma página)
+        navLinkItems.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('nav-open')) {
+                    navLinks.classList.remove('nav-open');
+                    navToggle.classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
